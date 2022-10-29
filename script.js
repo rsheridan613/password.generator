@@ -5,6 +5,9 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  newPassArr = [];
+  passwordLength = 0;
+  finalPasswordArr = [];
 
   passwordText.value = password;
 }
@@ -71,15 +74,73 @@ var upperCaseArr = [
 ];
 var numbersArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialArr = ["!", "@", "#", "$", "*", "%"];
+var passwordLength = 0;
+var newPassArr = [];
+var finalPasswordArr = [];
 
-//length prompt
+function generatePassword() {
+  //length prompt
+  var length = prompt("Please enter password length");
+  if (length >= 8 && length <= 128) {
+    passwordLength = length;
+  } else {
+    alert("Password must be between 8 and 128 charaters");
+    generatePassword();
+  }
 
-//lowercase prompt
+  //lowercase prompt
+  var isLowerCase = confirm("Do you want to add lower case characters?");
+  if (isLowerCase) {
+    lowerCaseGen();
+  }
 
-//uppercase prompt
+  //uppercase prompt
+  var isUpperCase = confirm("Do you want to add upper case characters?");
+  if (isUpperCase) {
+    upperCaseGen();
+  }
 
-//number prompt
+  //number prompt
+  var isNumbers = confirm("Do you want to add numbers?");
+  if (isNumbers) {
+    numberGen();
+  }
 
-//special prompt
+  //special prompt
+  var isSpecial = confirm("Do you want to add special characters?");
+  if (isSpecial) {
+    specialGen();
+  }
 
-//
+  for (let i = 0; i < passwordLength; i++) {
+    var indexValue = Math.floor(Math.random() * newPassArr.length);
+    var index = newPassArr[indexValue];
+    console.log(index);
+    finalPasswordArr.push(index);
+  }
+  return finalPasswordArr.join("");
+}
+
+function lowerCaseGen() {
+  for (let i = 0; i < lowerCaseArr.length; i++) {
+    newPassArr.push(lowerCaseArr[i]);
+  }
+}
+
+function upperCaseGen() {
+  for (let i = 0; i < upperCaseArr.length; i++) {
+    newPassArr.push(upperCaseArr[i]);
+  }
+}
+
+function numberGen() {
+  for (let i = 0; i < numbersArr.length; i++) {
+    newPassArr.push(numbersArr[i]);
+  }
+}
+
+function specialGen() {
+  for (let i = 0; i < specialArr.length; i++) {
+    newPassArr.push(specialArr[i]);
+  }
+}
