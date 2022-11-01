@@ -7,7 +7,7 @@ Generate a unique password in just a few steps. Prompts will ask for character l
 N/A
 
 ## Visuals
-[Screenshot](Screenshot_20221029_084751.png)
+![Screenshot](Screenshot_20221029_084751.png)
 
 https://rsheridan613.github.io/password.generator/
 
